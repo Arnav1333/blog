@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+        }
+
+        /* Navigation bar styling */
+        nav {
+            background-color: #333;
+            padding: 10px 0;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 8px 12px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border-radius: 4px;
+        }
+
+        nav ul li a:hover {
+            background-color: #555;
+        }
+
+        /* Page heading */
+        h1 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #34495e;
+        }
+
+        /* Profile information styling */
+        .profile-info {
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .profile-info p {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .profile-info p span {
+            font-weight: bold;
+            color: #2980b9;
+        }
+
+        /* Logout form styling */
+        .logout-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .logout-container form {
+            display: flex;
+        }
+
+        .logout-container button {
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .logout-container button:hover {
+            background-color: #c0392b;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .profile-info {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            .profile-info p {
+                font-size: 16px;
+            }
+
+            .logout-container button {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul class='nav-ul'>
+            <li class='nav-li'><a href="{% url 'home' %}">Home</a></li>
+            <li class='nav-li'><a href="{% url 'post-list' %}">Blog</a></li>
+            <li class='nav-li'><a href="{% url 'profile' %}">Profile</a></li>
+            <li class='nav-li'><a href="{% url 'login' %}">Login</a></li>
+            <li class='nav-li'><a href="{% url 'register' %}">Register</a></li>
+        
+        </ul>
+    </nav>
+
+    <!-- Profile Information -->
+    <div class="profile-info">
+        <h1>Welcome, {{ user.username }}</h1>
+        <h2>{{ user.username }}'s Profile</h2>
+        <p><span>Email:</span> {{ user.email }}</p>
+        
+    </div>
+
+    <!-- Logout Button -->
+    <div class="logout-container">
+        <form id="logout-form" action="{% url 'logout' %}" method="POST">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+
+</body>
+</html>

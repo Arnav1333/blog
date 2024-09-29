@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        /* Navigation bar styling */
+        nav {
+            background-color: #333;
+            padding: 15px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover {
+            color: #f4f4f4;
+            border-bottom: 2px solid #f4f4f4;
+        }
+
+        /* Page content styling */
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 48px;
+            color: #333;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 24px;
+            color: #555;
+            margin-bottom: 40px;
+        }
+
+        /* Logout form styling */
+        #logout-form {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        #logout-form button {
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #logout-form button:hover {
+            background-color: #c0392b;
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <ul class='nav-ul'>
+            <li class='nav-li'><a href="{% url 'home' %}">Home</a></li>
+            <li class='nav-li'><a href="{% url 'post-list' %}">Blog</a></li>
+            <li class='nav-li'><a href="{% url 'profile' %}">Profile</a></li>
+            <li class='nav-li'><a href="{% url 'login' %}">Login</a></li>
+            <li class='nav-li'><a href="{% url 'register' %}">Register</a></li>
+        </ul>
+    </nav>
+
+    <h1>Home Page</h1>
+    <h2>Welcome to my Blog Page</h2>
+
+    <form id="logout-form" action="{% url 'logout' %}" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Logout</button>
+    </form>
+</body>
+</html>

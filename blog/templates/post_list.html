@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Blog Posts</title>
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+        }
+
+        /* Navigation bar styling */
+        nav {
+            background-color: #333;
+            padding: 15px;
+            margin-bottom: 30px;
+        }
+
+        .nav-ul {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+        }
+
+        .nav-ul .nav-li {
+            margin: 0 20px;
+        }
+
+        .nav-ul .nav-li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 8px;
+        }
+
+        .nav-ul .nav-li a:hover {
+            background-color: #444;
+            border-radius: 5px;
+        }
+
+        /* Blog post list */
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .blog-ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .blog-ul .blog-li {
+            background-color: #fff;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-ul .blog-li a {
+            font-size: 24px;
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .blog-ul .blogli a:hover {
+            text-decoration: underline;
+        }
+
+        .blog-ul .blog-li p {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #666;
+        }
+
+        .post-meta {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .post-actions {
+            margin-top: 10px;
+        }
+
+        .post-actions a {
+            color: #e74c3c;
+            font-size: 14px;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .post-actions a:hover {
+            text-decoration: underline;
+        }
+
+        /* Create post button */
+        .create-post {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background-color: #2ecc71;
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .create-post:hover {
+            background-color: #27ae60;
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul class='nav-ul'>
+            <li class='nav-li'><a href="{% url 'home' %}">Home</a></li>
+            <li class='nav-li'><a href="{% url 'post-list' %}">Blog</a></li>
+            <li class='nav-li'><a href="{% url 'profile' %}">Profile</a></li>
+            <li class='nav-li'><a href="{% url 'login' %}">Login</a></li>
+            <li class='nav-li'><a href="{% url 'register' %}">Register</a></li>
+        
+        </ul>
+    </nav>
+
+    <h1>All Blog Posts</h1>
+
+    <!-- Create a new post button -->
+    <a href="{% url 'post-create' %}" class="create-post">Create a New Post</a>
+
+    <!-- Blog post list -->
+    <ul class="blog-ul">
+        {% for post in posts %}
+        <li class='blog-li'>
+            <a href="{% url 'post-update' post.pk %}">{{ post.title }}</a>
+            <div class="post-meta">by {{ post.author }} on {{ post.date_posted }}</div>
+            <p>{{ post.content }}</p>
+            <div class="post-actions">
+                <a href="{% url 'post-delete' post.pk %}">Delete</a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
